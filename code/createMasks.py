@@ -11,6 +11,17 @@ from DataSetNPY import DataSetNPY
 from metrics import *
 from globalVars import *
 
+import sys
+
+if len(sys.argv) < 2:
+    print('usage: createMask <in_mri> <out_mask>')
+    sys.exit()
+
+in_mri = sys.argv[1]
+out_mask = sys.argv[2]
+
+
+
 def createMasks(fileNames, saveNames, checkpointDir=None):
     """
     Reloads a model from checkpointDir and runs it on the files
@@ -51,11 +62,11 @@ def createMasks(fileNames, saveNames, checkpointDir=None):
             print(end-start)
  
 #AN EXAMPLE OF HOW TO USE THIS WITH AN ENTIRE DIRECTORY
-dir = '/Users/saigerutherford/Desktop/images/' #set this path to the directory where your input images live
-names = [name for name in os.listdir(dir)] 
-fileNames = [dir + name for name in names]
-saveNames = [dir + 'pred_' + name for name in names]
-createMasks(fileNames, saveNames)
+#dir = '/Users/saigerutherford/Desktop/images/' #set this path to the directory where your input images live
+#names = [name for name in os.listdir(dir)] 
+#fileNames = [dir + name for name in names]
+#saveNames = [dir + 'pred_' + name for name in names]
+createMasks([in_mri],[out_mask])
 
 #AN EXAMPLE WITH A SINGLE FILE
 #fileNames = ['zpr_2006-T1_run1_vol0017.nii']
